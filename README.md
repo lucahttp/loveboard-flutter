@@ -38,3 +38,11 @@ change all AndroidManifest.xml targetSdkVersion property to android:targetSdkVer
 #### flutter Manifest versionCode not found
 delete android and build folders
 run flutter create .
+
+#### internet images
+In the AndroidManifest.xml file located at android/app/src/main you need to add this permission inside the manifest tag.
+
+https://stackoverflow.com/questions/62908202/getting-internet-permission-in-flutter-app
+<uses-permission android:name="android.permission.INTERNET" />
+https://stackoverflow.com/questions/12778168/access-network-state-permission-on-android-ics/40458189#40458189
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
