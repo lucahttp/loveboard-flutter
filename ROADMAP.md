@@ -4,7 +4,7 @@ A new Flutter project.
 
 
 ## what we have
-editable grid
+ - grid
     - add widgets
     - move widgets
     - resize widgets
@@ -15,7 +15,7 @@ editable grid
             - youtube
     
 ## what we are working on
-grid
+ - grid
     - edit widgets
     - delete widgets
     - type of widgets
@@ -24,15 +24,15 @@ grid
     
 
 ## what we want to have in the future
-grid
-    - delete widgets
-    - type of widgets
+ - grid
+	 - delete widgets
+	 - type of widgets
         - text
         - upload photos from phone
     - save grid
     - [optional] scroll grid
     - [optional] when click widget open full screen
     - [ux] add animations when edit (when resize widget,when move)
-homescreen
+- homescreen
     - swipe cards
         - lean told me to do something new and fresh instead of swipe cards
