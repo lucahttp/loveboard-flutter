@@ -33,4 +33,6 @@ grid
     [optional] scroll grid
     [optional] when click widget open full screen
     [ux] add animations when edit (when resize widget,when move)
-    
+homescreen
+    swipe cards
+        lean told me to do something new and fresh instead of swipe cards
