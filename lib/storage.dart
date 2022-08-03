@@ -397,19 +397,24 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
   @override
   FutureOr<void> onItemsUpdated(
       List<ColoredDashboardItem> items, int slotCount) async {
+        
+    if (_localItems != null) {
     for (var item in items) {
       _localItems?[slotCount]?[item.identifier] = item;
     }
-
     var js = json.encode(_localItems![slotCount]!
         .map((key, value) => MapEntry(key, value.toMap())));
 
     await _preferences.setString("layout_data_$slotCount", js);
+      
+    }
   }
 
   @override
   FutureOr<void> onItemsAdded(
       List<ColoredDashboardItem> items, int slotCount) async {
+            if (_localItems != null) {
+
     for (var s in _slotCounts) {
       for (var i in items) {
         _localItems![s]?[i.identifier] = i;
@@ -420,11 +425,14 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           json.encode(_localItems![s]!
               .map((key, value) => MapEntry(key, value.toMap()))));
     }
-  }
+  }}
 
   @override
   FutureOr<void> onItemsDeleted(
+    
       List<ColoredDashboardItem> items, int slotCount) async {
+                    if (_localItems != null) {
+
     for (var s in _slotCounts) {
       for (var i in items) {
         _localItems![s]?.remove(i.identifier);
@@ -435,7 +443,7 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           json.encode(_localItems![s]!
               .map((key, value) => MapEntry(key, value.toMap()))));
     }
-  }
+  }}
 
   Future<void> clear() async {
     for (var s in _slotCounts) {

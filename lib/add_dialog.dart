@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class AddDialog extends StatefulWidget {
   const AddDialog({Key? key}) : super(key: key);
@@ -7,6 +8,94 @@ class AddDialog extends StatefulWidget {
   @override
   State<AddDialog> createState() => _AddDialogState();
 }
+
+
+
+class Gender {
+  String name;
+  IconData icon;
+  bool isSelected;
+
+  Gender(this.name, this.icon, this.isSelected);
+}
+class CustomRadio extends StatelessWidget {
+  final Gender _gender;
+
+  const CustomRadio(this._gender);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+        color: _gender.isSelected ? const Color(0xFF3B4257) : Colors.white,
+        child: Container(
+          height: 80,
+          width: 80,
+          alignment: Alignment.center,
+          margin: const EdgeInsets.all(5.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Icon(
+                _gender.icon,
+                color: _gender.isSelected ? Colors.white : Colors.grey,
+                size: 40,
+              ),
+              const SizedBox(height: 10),
+              Text(
+                _gender.name,
+                style: TextStyle(
+                    color: _gender.isSelected ? Colors.white : Colors.grey),
+              )
+            ],
+          ),
+        ));
+  }
+}
+
+
+class GenderSelector extends StatefulWidget {
+  const GenderSelector({Key? key}) : super(key: key);
+
+  @override
+  _GenderSelectorState createState() => _GenderSelectorState();
+}
+
+class _GenderSelectorState extends State<GenderSelector> {
+  List<Gender> genders = <Gender>[];
+
+  @override
+  void initState() {
+    super.initState();
+    genders.add(Gender("Youtube", MdiIcons.youtube, false));
+    genders.add(Gender("Image", MdiIcons.fileImage, false));
+    genders.add(Gender("Text", MdiIcons.text, false));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        scrollDirection: Axis.horizontal,
+        shrinkWrap: true,
+        itemCount: genders.length,
+        itemBuilder: (context, index) {
+          return InkWell(
+            splashColor: Colors.pinkAccent,
+            onTap: () {
+              setState(() {
+                for (var gender in genders) {
+                  gender.isSelected = false;
+                }
+                genders[index].isSelected = true;
+              });
+            },
+            child: CustomRadio(genders[index]),
+          );
+        });
+  }
+}
+
+
 
 class _AddDialogState extends State<AddDialog> {
   int minW = 1, minH = 1, w = 1, h = 1;
@@ -24,6 +113,7 @@ class _AddDialogState extends State<AddDialog> {
   ];
 
   Color color = Colors.red;
+  //Gender gender = Gender.;
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +129,7 @@ class _AddDialogState extends State<AddDialog> {
                 drop("Width", false, 0, false),
                 drop("Height", false, 1, false),
                 drop("Minimum Width", false, 2, true),
-                drop("Minimum Height", false, 3, true),
+                drop("2 Minimum Height", false, 3, true),
                 drop("Maximum Width", true, 4, false),
                 drop("Maximum Height", true, 5, false),
                 const SizedBox(
@@ -62,6 +152,24 @@ class _AddDialogState extends State<AddDialog> {
                                 color = c;
                               });
                             }),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Text("Type: "),
+                    Expanded(
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 200,
+                        width: double.infinity,
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: const GenderSelector(),
                       ),
                     )
                   ],

@@ -9,6 +9,10 @@ import 'package:flutter/material.dart';
 import 'add_dialog.dart';
 import 'data_widget.dart';
 
+import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
+import 'package:url_launcher/url_launcher_string.dart';
+
 ///
 void main() {
   ///
@@ -228,51 +232,92 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                     );
                   }
 
-                  return Stack(
-                    children: [
-                      Container(
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            color: item.color,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: SizedBox(
-                            width: double.infinity,
-                            height: double.infinity,
-                            child: Text(
-                              "ID: ${item.identifier}\n${[
-                                "x: ${layout.startX}",
-                                "y: ${layout.startY}",
-                                "w: ${layout.width}",
-                                "h: ${layout.height}",
-                                if (layout.minWidth != 1)
-                                  "minW: ${layout.minWidth}",
-                                if (layout.minHeight != 1)
-                                  "minH: ${layout.minHeight}",
-                                if (layout.maxWidth != null)
-                                  "maxW: ${layout.maxWidth}",
-                                if (layout.maxHeight != null)
-                                  "maxH : ${layout.maxHeight}"
-                              ].join("\n")}",
-                              style: const TextStyle(color: Colors.white),
-                            )),
-                      ),
-                      if (itemController.isEditing)
-                        Positioned(
-                            right: 5,
-                            top: 5,
-                            child: InkResponse(
-                                radius: 20,
-                                onTap: () {
-                                  itemController.delete(item.identifier);
-                                },
-                                child: const Icon(
-                                  Icons.clear,
-                                  color: Colors.white,
-                                  size: 20,
-                                )))
-                    ],
-                  );
+                  return Stack(children: [
+                    FocusedMenuHolder(
+                        menuWidth: MediaQuery.of(context).size.width * 0.50,
+                        blurSize: 5.0,
+                        menuItemExtent: 45,
+                        menuBoxDecoration: const BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(15.0))),
+                        duration: const Duration(milliseconds: 100),
+                        animateMenuItems: true,
+                        blurBackgroundColor: Colors.black54,
+                        openWithTap:
+                            false, // Open Focused-Menu on Tap rather than Long Press
+                        menuOffset:
+                            10.0, // Offset value to show menuItem from the selected item
+                        bottomOffsetHeight:
+                            80.0, // Offset height to consider, for showing the menu item ( for example bottom navigation bar), so that the popup menu will be shown on top of selected item.
+                        menuItems: [
+                          // Add Each FocusedMenuItem  for Menu Options
+                          FocusedMenuItem(
+                              title: const Text("Edit"),
+                              trailingIcon: const Icon(Icons.edit),
+                              onPressed: () {
+                                launchUrlString(
+                                    "https://anoringa.win");
+                              }),
+                          FocusedMenuItem(
+                              title: const Text(
+                                "Delete",
+                                style: TextStyle(color: Colors.redAccent),
+                              ),
+                              trailingIcon: const Icon(
+                                Icons.delete,
+                                color: Colors.redAccent,
+                              ),
+                              onPressed: () {
+                                //itemController.delete(item.identifier)
+                                      itemController.delete(item.identifier);
+                              }),
+                        ],
+                        onPressed: () {},
+                        child: Stack(children: [
+                          Container(
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: item.color,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: SizedBox(
+                                width: double.infinity,
+                                height: double.infinity,
+                                child: Text(
+                                  "ID: ${item.identifier}\n${[
+                                    "x: ${layout.startX}",
+                                    "y: ${layout.startY}",
+                                    "w: ${layout.width}",
+                                    "h: ${layout.height}",
+                                    if (layout.minWidth != 1)
+                                      "minW: ${layout.minWidth}",
+                                    if (layout.minHeight != 1)
+                                      "minH: ${layout.minHeight}",
+                                    if (layout.maxWidth != null)
+                                      "maxW: ${layout.maxWidth}",
+                                    if (layout.maxHeight != null)
+                                      "maxH : ${layout.maxHeight}"
+                                  ].join("\n")}",
+                                  style: const TextStyle(color: Colors.white),
+                                )),
+                          ),
+                          if (itemController.isEditing)
+                            Positioned(
+                                right: 5,
+                                top: 5,
+                                child: InkResponse(
+                                    radius: 20,
+                                    onTap: () {
+                                      itemController.delete(item.identifier);
+                                    },
+                                    child: const Icon(
+                                      Icons.clear,
+                                      color: Colors.white,
+                                      size: 20,
+                                    )))
+                        ]))
+                  ]);
                 },
               ),
       ),

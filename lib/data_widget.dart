@@ -1,12 +1,12 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:dashboard/dashboard.dart';
-import 'package:focused_menu/modals.dart';
 import 'package:loveboard/storage.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:focused_menu/focused_menu.dart';
+import 'package:focused_menu/modals.dart';
 
 const Color blue = Color(0xFF4285F4);
 const Color red = Color(0xFFEA4335);
@@ -496,7 +496,8 @@ String myVideoId = 'AvhplYM46Fc';
 final YoutubePlayerController _controller = YoutubePlayerController(
   initialVideoId: myVideoId,
   flags: const YoutubePlayerFlags(
-    autoPlay: true,
+    autoPlay: false,
+    enableCaption: false,
     mute: false,
   ),
 );
@@ -552,10 +553,10 @@ class DevItemWithMenu extends StatelessWidget {
         menuWidth: MediaQuery.of(context).size.width * 0.50,
         blurSize: 5.0,
         menuItemExtent: 45,
-        menuBoxDecoration: BoxDecoration(
+        menuBoxDecoration: const BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.all(Radius.circular(15.0))),
-        duration: Duration(milliseconds: 100),
+        duration: const Duration(milliseconds: 100),
         animateMenuItems: true,
         blurBackgroundColor: Colors.black54,
         openWithTap: false, // Open Focused-Menu on Tap rather than Long Press
@@ -566,17 +567,17 @@ class DevItemWithMenu extends StatelessWidget {
         menuItems: [
           // Add Each FocusedMenuItem  for Menu Options
           FocusedMenuItem(
-              title: Text("Edit"),
-              trailingIcon: Icon(Icons.edit),
+              title: const Text("Edit"),
+              trailingIcon: const Icon(Icons.edit),
               onPressed: () {
                 launchUrlString("https://pub.dev/packages/dashboard");
               }),
           FocusedMenuItem(
-              title: Text(
+              title: const Text(
                 "Delete",
                 style: TextStyle(color: Colors.redAccent),
               ),
-              trailingIcon: Icon(
+              trailingIcon: const Icon(
                 Icons.delete,
                 color: Colors.redAccent,
               ),

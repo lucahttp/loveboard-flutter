@@ -21,8 +21,9 @@ A new Flutter project.
     - type of widgets
         - photos
             - upload photos from phone
-    
-
+ - grid -> add widget panel
+   - select medio inside widget
+   - 
 ## what we want to have in the future
  - grid
 	 - delete widgets

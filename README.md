@@ -46,3 +46,6 @@ https://stackoverflow.com/questions/62908202/getting-internet-permission-in-flut
 <uses-permission android:name="android.permission.INTERNET" />
 https://stackoverflow.com/questions/12778168/access-network-state-permission-on-android-ics/40458189#40458189
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
+####
+    // ERROR Exception has occurred. | _CastError (Null check operator used on a null value)

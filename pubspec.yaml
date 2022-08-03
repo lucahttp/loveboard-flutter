@@ -46,6 +46,7 @@ dependencies:
   # grid items
   youtube_player_flutter: ^8.0.0
   focused_menu: ^1.0.5
+  material_design_icons_flutter: ^5.0.6996
 dev_dependencies:
   flutter_test:
     sdk: flutter
