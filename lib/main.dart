@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:dashboard/dashboard.dart';
+import 'package:loveboard/items_types.dart';
 import 'package:loveboard/storage.dart';
 
 import 'package:flutter/material.dart';
@@ -217,7 +218,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                     paintBackgroundLines: true,
                     resizeCursorSide: 15,
                     curve: Curves.easeInOutCirc,
-                    duration: const Duration(milliseconds: 300),
+                    duration: const Duration(milliseconds: 1000),
                     backgroundStyle: const EditModeBackgroundStyle(
                         lineColor: Colors.black38,
                         lineWidth: 0.5,
@@ -256,8 +257,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               title: const Text("Edit"),
                               trailingIcon: const Icon(Icons.edit),
                               onPressed: () {
-                                launchUrlString(
-                                    "https://anoringa.win");
+                                launchUrlString("https://anoringa.win");
                               }),
                           FocusedMenuItem(
                               title: const Text(
@@ -270,12 +270,13 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               ),
                               onPressed: () {
                                 //itemController.delete(item.identifier)
-                                      itemController.delete(item.identifier);
+                                itemController.delete(item.identifier);
                               }),
                         ],
                         onPressed: () {},
                         child: Stack(children: [
-                          Container(
+
+                          /*Container(
                             alignment: Alignment.center,
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
@@ -284,38 +285,90 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                             child: SizedBox(
                                 width: double.infinity,
                                 height: double.infinity,
-                                child: Text(
-                                  "ID: ${item.identifier}\n${[
-                                    "x: ${layout.startX}",
-                                    "y: ${layout.startY}",
-                                    "w: ${layout.width}",
-                                    "h: ${layout.height}",
-                                    if (layout.minWidth != 1)
-                                      "minW: ${layout.minWidth}",
-                                    if (layout.minHeight != 1)
-                                      "minH: ${layout.minHeight}",
-                                    if (layout.maxWidth != null)
-                                      "maxW: ${layout.maxWidth}",
-                                    if (layout.maxHeight != null)
-                                      "maxH : ${layout.maxHeight}"
-                                  ].join("\n")}",
-                                  style: const TextStyle(color: Colors.white),
-                                )),
-                          ),
-                          if (itemController.isEditing)
-                            Positioned(
-                                right: 5,
-                                top: 5,
-                                child: InkResponse(
-                                    radius: 20,
-                                    onTap: () {
-                                      itemController.delete(item.identifier);
-                                    },
-                                    child: const Icon(
-                                      Icons.clear,
-                                      color: Colors.white,
-                                      size: 20,
-                                    )))
+                                child: Stack(children: [
+
+
+                  ]
+                  )
+                        )
+
+                  )
+                           */
+                  if(item.typeOfObject!=null)
+                    item.typeOfObject?.simulateRequest()
+                  else
+                    const DevPhoto()
+
+
+
+                          /*Container(
+          color: item.color,
+          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Icon(
+                Icons.add,
+                size: 30,
+                color: Colors.white,
+              ),
+              Text("asdasdsad")]))
+
+                          */
+                          /*if (true) ...[
+                            //const DevPhoto()
+                            
+                            if(item.type?.content != null)...[
+                              item.type?.simulateRequest()
+                            ]
+                            else ...[
+                                const DevPhoto()
+                            ]
+                          ] else ...[
+                            Container(
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: item.color,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: SizedBox(
+                                  width: double.infinity,
+                                  height: double.infinity,
+                                  child: Text(
+                                    "ID: ${item.identifier}\n${[
+                                      "x: ${layout.startX}",
+                                      "y: ${layout.startY}",
+                                      "w: ${layout.width}",
+                                      "h: ${layout.height}",
+                                      if (layout.minWidth != 1)
+                                        "minW: ${layout.minWidth}",
+                                      if (layout.minHeight != 1)
+                                        "minH: ${layout.minHeight}",
+                                      if (layout.maxWidth != null)
+                                        "maxW: ${layout.maxWidth}",
+                                      if (layout.maxHeight != null)
+                                        "maxH : ${layout.maxHeight}"
+                                    ].join("\n")}",
+                                    style: const TextStyle(color: Colors.white),
+                                  )),
+                            ),
+                            if (itemController.isEditing)
+                              Positioned(
+                                  right: 5,
+                                  top: 5,
+                                  child: InkResponse(
+                                      radius: 20,
+                                      onTap: () {
+                                        itemController.delete(item.identifier);
+                                      },
+                                      child: const Icon(
+                                        Icons.clear,
+                                        color: Colors.white,
+                                        size: 20,
+                                      )))
+                          ],*/
                         ]))
                   ]);
                 },
@@ -332,15 +385,18 @@ class _DashboardWidgetState extends State<DashboardWidget> {
         });
 
     if (res != null) {
-      itemController.add(ColoredDashboardItem(
-          color: res[6],
-          width: res[0],
-          height: res[1],
-          identifier: (Random().nextInt(100000) + 4).toString(),
-          minWidth: res[2],
-          minHeight: res[3],
-          maxWidth: res[4] == 0 ? null : res[4],
-          maxHeight: res[5] == 0 ? null : res[5]));
+      itemController.add(
+        ColoredDashboardItem(
+            color: res[6],
+            width: res[0],
+            height: res[1],
+            identifier: (Random().nextInt(100000) + 4).toString(),
+            minWidth: res[2],
+            minHeight: res[3],
+            maxWidth: res[4] == 0 ? null : res[4],
+            maxHeight: res[5] == 0 ? null : res[5],
+            typeOfObject: res[7]),
+      );
     }
   }
 }

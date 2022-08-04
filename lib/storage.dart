@@ -5,6 +5,8 @@ import 'package:dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'items_types.dart';
+
 class ColoredDashboardItem extends DashboardItem {
   ColoredDashboardItem(
       {this.color,
@@ -17,7 +19,8 @@ class ColoredDashboardItem extends DashboardItem {
         int? maxHeight,
         int? maxWidth,
         int? startX,
-        int? startY})
+        int? startY, 
+        this.typeOfObject})
       : super(
       startX: startX,
       startY: startY,
@@ -35,6 +38,8 @@ class ColoredDashboardItem extends DashboardItem {
         super.withLayout(map["item_id"], ItemLayout.fromMap(map["layout"]));
 
   Color? color;
+
+  Gender? typeOfObject;
 
   String? data;
 
@@ -66,6 +71,7 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
         minHeight: 2,
         identifier: "1",
         data: "description",
+          typeOfObject: Genders.text
       ),
       ColoredDashboardItem(
           startX: 3,
@@ -74,7 +80,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 1,
           identifier: "2",
-          data: "resize"),
+          data: "resize",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 0,
           startY: 0,
@@ -82,7 +89,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 1,
           identifier: "3",
           minWidth: 3,
-          data: "welcome"),
+          data: "welcome",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 1,
           startY: 3,
@@ -91,7 +99,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 3,
           identifier: "4",
-          data: "transform"),
+          data: "transform",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 0,
           startY: 3,
@@ -99,7 +108,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 1,
           identifier: "5",
-          data: "add"),
+          data: "add",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           maxWidth: 2,
@@ -109,7 +119,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 2,
           startY: 7,
           identifier: "6",
-          data: "buy_mee"),
+          data: "buy_mee",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           height: 1,
@@ -117,7 +128,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 2,
           startY: 5,
           identifier: "7",
-          data: "delete"),
+          data: "delete",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           height: 1,
@@ -125,7 +137,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 0,
           startY: 5,
           identifier: "8",
-          data: "refresh"),
+          data: "refresh",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 3,
           height: 1,
@@ -133,26 +146,34 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 0,
           startY: 6,
           identifier: "9",
-          data: "info"),
+          data: "info",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 3,
           startY: 6,
           height: 1,
           width: 1,
           identifier: "13",
-          data: "pub"),
+          data: "pub",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "10", data: "github"),
+          height: 1, width: 2, identifier: "10", data: "github",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "11", data: "twitter"),
+          height: 1, width: 2, identifier: "11", data: "twitter",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "12", data: "linkedin"),
+          height: 1, width: 2, identifier: "12", data: "linkedin",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "14", data: "devphoto"),
+          height: 1, width: 2, identifier: "14", data: "devphoto",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "15", data: "devyoutube"),
+          height: 1, width: 2, identifier: "15", data: "devyoutube",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "16", data: "devitemwithmenu")
+          height: 1, width: 2, identifier: "16", data: "devitemwithmenu",
+          typeOfObject: Genders.text)
     ],
     6: <ColoredDashboardItem>[
       ColoredDashboardItem(
@@ -163,6 +184,7 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
         minHeight: 2,
         identifier: "1",
         data: "description",
+          typeOfObject: Genders.text
       ),
       ColoredDashboardItem(
           startX: 3,
@@ -171,7 +193,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 1,
           identifier: "2",
-          data: "resize"),
+          data: "resize",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 0,
           startY: 2,
@@ -179,7 +202,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 1,
           identifier: "3",
           minWidth: 3,
-          data: "welcome"),
+          data: "welcome",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 4,
           startY: 0,
@@ -188,7 +212,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 2,
           identifier: "4",
-          data: "transform"),
+          data: "transform",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 5,
           startY: 2,
@@ -196,7 +221,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 1,
           identifier: "5",
-          data: "add"),
+          data: "add",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           maxWidth: 2,
@@ -206,7 +232,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 4,
           startY: 4,
           identifier: "6",
-          data: "buy_mee"),
+          data: "buy_mee",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           height: 1,
@@ -214,7 +241,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 0,
           startY: 4,
           identifier: "7",
-          data: "delete"),
+          data: "delete",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           height: 1,
@@ -222,7 +250,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 2,
           startY: 4,
           identifier: "8",
-          data: "refresh"),
+          data: "refresh",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 4,
           height: 1,
@@ -230,26 +259,34 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 0,
           startY: 3,
           identifier: "9",
-          data: "info"),
+          data: "info",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "10", data: "github"),
+          height: 1, width: 2, identifier: "10", data: "github",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "11", data: "twitter"),
+          height: 1, width: 2, identifier: "11", data: "twitter",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "12", data: "linkedin"),
+          height: 1, width: 2, identifier: "12", data: "linkedin",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 4,
           startY: 3,
           height: 1,
           width: 1,
           identifier: "13",
-          data: "pub"),
+          data: "pub",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "14", data: "devphoto"),
+          height: 1, width: 2, identifier: "14", data: "devphoto",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "15", data: "devyoutube"),
+          height: 1, width: 2, identifier: "15", data: "devyoutube",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "16", data: "devitemwithmenu")
+          height: 1, width: 2, identifier: "16", data: "devitemwithmenu",
+          typeOfObject: Genders.text)
     ],
     8: <ColoredDashboardItem>[
       ColoredDashboardItem(
@@ -260,6 +297,7 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
         minHeight: 2,
         identifier: "1",
         data: "description",
+          typeOfObject: Genders.text
       ),
       ColoredDashboardItem(
           startX: 3,
@@ -268,7 +306,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 2,
           identifier: "2",
-          data: "resize"),
+          data: "resize",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 2,
           startY: 2,
@@ -276,7 +315,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 1,
           identifier: "3",
           minWidth: 3,
-          data: "welcome"),
+          data: "welcome",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 5,
           startY: 0,
@@ -285,7 +325,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 2,
           identifier: "4",
-          data: "transform"),
+          data: "transform",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 7,
           startY: 0,
@@ -293,7 +334,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           height: 2,
           width: 1,
           identifier: "5",
-          data: "add"),
+          data: "add",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           maxWidth: 2,
@@ -303,7 +345,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 2,
           startY: 4,
           identifier: "6",
-          data: "buy_mee"),
+          data: "buy_mee",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           height: 1,
@@ -311,7 +354,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 0,
           startY: 2,
           identifier: "7",
-          data: "delete"),
+          data: "delete",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 2,
           height: 1,
@@ -319,7 +363,8 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 6,
           startY: 2,
           identifier: "8",
-          data: "refresh"),
+          data: "refresh",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           minWidth: 3,
           height: 1,
@@ -327,26 +372,34 @@ class MyItemStorage extends DashboardItemStorageDelegate<ColoredDashboardItem> {
           startX: 0,
           startY: 3,
           identifier: "9",
-          data: "info"),
+          data: "info",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "10", data: "github"),
+          height: 1, width: 2, identifier: "10", data: "github",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "11", data: "twitter"),
+          height: 1, width: 2, identifier: "11", data: "twitter",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "12", data: "linkedin"),
+          height: 1, width: 2, identifier: "12", data: "linkedin",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
           startX: 6,
           startY: 3,
           height: 2,
           width: 2,
           identifier: "13",
-          data: "pub"),
+          data: "pub",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "14", data: "devphoto"),
+          height: 1, width: 2, identifier: "14", data: "devphoto",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "15", data: "devyoutube"),
+          height: 1, width: 2, identifier: "15", data: "devyoutube",
+          typeOfObject: Genders.text),
       ColoredDashboardItem(
-          height: 1, width: 2, identifier: "16", data: "devitemwithmenu")
+          height: 1, width: 2, identifier: "16", data: "devitemwithmenu",
+          typeOfObject: Genders.text)
     ]
   };
 

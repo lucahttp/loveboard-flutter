@@ -28,6 +28,10 @@ samples, guidance on mobile development, and a full API reference.
 ## steps
 ### android
 flutter --no-color build apk
+C:\src\flutter\bin\flutter.bat --no-color build apk
+
+## tutorials
+https://medium.com/flutter-community/create-custom-radio-input-in-flutter-8d94a273d374
 ## issues
 
 ### android

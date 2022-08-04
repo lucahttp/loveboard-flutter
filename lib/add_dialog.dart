@@ -1,98 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+
+import 'items_types.dart';
 
 class AddDialog extends StatefulWidget {
   const AddDialog({Key? key}) : super(key: key);
 
   @override
   State<AddDialog> createState() => _AddDialogState();
-}
-
-
-
-class Gender {
-  String name;
-  IconData icon;
-  bool isSelected;
-
-  Gender(this.name, this.icon, this.isSelected);
-}
-class CustomRadio extends StatelessWidget {
-  final Gender _gender;
-
-  const CustomRadio(this._gender);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-        color: _gender.isSelected ? const Color(0xFF3B4257) : Colors.white,
-        child: Container(
-          height: 80,
-          width: 80,
-          alignment: Alignment.center,
-          margin: const EdgeInsets.all(5.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Icon(
-                _gender.icon,
-                color: _gender.isSelected ? Colors.white : Colors.grey,
-                size: 40,
-              ),
-              const SizedBox(height: 10),
-              Text(
-                _gender.name,
-                style: TextStyle(
-                    color: _gender.isSelected ? Colors.white : Colors.grey),
-              )
-            ],
-          ),
-        ));
-  }
-}
-
-
-class GenderSelector extends StatefulWidget {
-  const GenderSelector({Key? key}) : super(key: key);
-
-  @override
-  _GenderSelectorState createState() => _GenderSelectorState();
-}
-
-class _GenderSelectorState extends State<GenderSelector> {
-  List<Gender> genders = <Gender>[];
-
-  @override
-  void initState() {
-    super.initState();
-    genders.add(Gender("Youtube", MdiIcons.youtube, false));
-    genders.add(Gender("Image", MdiIcons.fileImage, false));
-    genders.add(Gender("Text", MdiIcons.text, false));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        scrollDirection: Axis.horizontal,
-        shrinkWrap: true,
-        itemCount: genders.length,
-        itemBuilder: (context, index) {
-          return InkWell(
-            splashColor: Colors.pinkAccent,
-            onTap: () {
-              setState(() {
-                for (var gender in genders) {
-                  gender.isSelected = false;
-                }
-                genders[index].isSelected = true;
-              });
-            },
-            child: CustomRadio(genders[index]),
-          );
-        });
-  }
 }
 
 
@@ -108,12 +23,12 @@ class _AddDialogState extends State<AddDialog> {
     1, //minW 2
     1, //minH 3
     0, //maxW 4
-    0, //maxH 5
+    0 //maxH 5
     // 6
   ];
 
-  Color color = Colors.red;
-  //Gender gender = Gender.;
+  Color color = Colors.yellow;
+  Gender gender = Genders.text;
 
   @override
   Widget build(BuildContext context) {
@@ -169,7 +84,13 @@ class _AddDialogState extends State<AddDialog> {
                         height: 200,
                         width: double.infinity,
                         padding: const EdgeInsets.only(left: 10, right: 10),
-                        child: const GenderSelector(),
+                        child: GenderSelector(
+                            pickerItem: gender,
+                            onItemChanged: (d) {
+                              setState(() {
+                                gender = d;
+                              });
+                            }),
                       ),
                     )
                   ],
@@ -207,8 +128,9 @@ class _AddDialogState extends State<AddDialog> {
                                 Text("height <= maxHeight is not true.")));
                         return;
                       }
-
-                      Navigator.pop(context, values..add(color));
+                      //values.add(color);
+                      //values.add(gender);
+                      Navigator.pop(context,values..add(color)..add(gender));
                     },
                     child: const Padding(
                       padding:
