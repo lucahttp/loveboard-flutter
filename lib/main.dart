@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:dashboard/dashboard.dart';
-import 'package:loveboard/items_types.dart';
+//import 'package:loveboard/items_types.dart';
 import 'package:loveboard/storage.dart';
 
 import 'package:flutter/material.dart';
@@ -225,7 +225,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                         dualLineHorizontal: true,
                         dualLineVertical: true)),
                 itemBuilder: (ColoredDashboardItem item) {
-                  var layout = item.layoutData;
+                  // var layout = item.layoutData;
 
                   if (item.data != null) {
                     return DataWidget(
@@ -244,7 +244,7 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                 BorderRadius.all(Radius.circular(15.0))),
                         duration: const Duration(milliseconds: 100),
                         animateMenuItems: true,
-                        blurBackgroundColor: Colors.black54,
+                        //blurBackgroundColor: Colors.black54,
                         openWithTap:
                             false, // Open Focused-Menu on Tap rather than Long Press
                         menuOffset:
@@ -257,7 +257,53 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               title: const Text("Edit"),
                               trailingIcon: const Icon(Icons.edit),
                               onPressed: () {
-                                launchUrlString("https://anoringa.win");
+                                // launchUrlString("https://anoringa.win");
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        scrollable: true,
+                                        title: const Text('Login'),
+                                        content: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Form(
+                                            child: Column(
+                                              children: <Widget>[
+                                                TextFormField(
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    labelText: 'Name',
+                                                    icon:
+                                                        Icon(Icons.account_box),
+                                                  ),
+                                                ),
+                                                TextFormField(
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    labelText: 'Email',
+                                                    icon: Icon(Icons.email),
+                                                  ),
+                                                ),
+                                                TextFormField(
+                                                  decoration:
+                                                      const InputDecoration(
+                                                    labelText: 'Message',
+                                                    icon: Icon(Icons.message),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        actions: [
+                                          ElevatedButton(
+                                              child: const Text("Submit"),
+                                              onPressed: () {
+                                                // your code
+                                              })
+                                        ],
+                                      );
+                                    });
                               }),
                           FocusedMenuItem(
                               title: const Text(
@@ -274,7 +320,17 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                               }),
                         ],
                         onPressed: () {},
-                        child: Stack(children: [
+                        child: Container(
+                            alignment: Alignment.center,
+                            //padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: item.color,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: item.typeOfObject?.simulateRequest())
+
+                        /*
+                          Stack(
+                            children: [
 
                           /*Container(
                             alignment: Alignment.center,
@@ -369,7 +425,11 @@ class _DashboardWidgetState extends State<DashboardWidget> {
                                         size: 20,
                                       )))
                           ],*/
-                        ]))
+                        ]
+)
+                        */
+
+                        )
                   ]);
                 },
               ),

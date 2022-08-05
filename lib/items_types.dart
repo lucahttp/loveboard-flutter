@@ -13,15 +13,24 @@ class Gender {
 
   simulateRequest() {
     // first future holds family name
-
+      return content;
+/*
     if(content != null)
       return content;
     else
       return DevPhoto2();
-
+*/
 
   }
 }
+
+
+
+
+
+
+
+
 
 const Color blue = Color(0xFF4285F4);
 const Color red = Color(0xFFEA4335);
@@ -64,19 +73,13 @@ class DevPhoto2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: () {
-          launchUrlString("https://pub.dev/packages/dashboard");
-        },
-        child: Container(
-            color: Colors.white,
-            child: Container(
+    return Container(
                 alignment: Alignment.center,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.contain,
                         image: NetworkImage(
-                            "https://placekitten.com/200/300"))))));
+                            "https://placekitten.com/200/300"))));
   }
 }
 
@@ -86,7 +89,7 @@ class DevTextResize extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: blue,
+        //color: blue,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         child: Column(
@@ -105,7 +108,7 @@ class DevTextResize extends StatelessWidget {
             )
           ],
         ));
-  }
+  } 
 }
 
 class Genders {
@@ -121,7 +124,7 @@ class Genders {
   */
 
   static Gender youtube =
-  Gender("Youtube", MdiIcons.youtube, false,DevYoutube());
+  Gender("Youtube", MdiIcons.youtube, false,const DevYoutube());
 
   /*
       static Gender image = Gender(
@@ -138,7 +141,7 @@ class Genders {
   static Gender image = Gender(
       "Image",
       MdiIcons.fileImage,
-      false,DevPhoto2());
+      false,const DevPhoto2());
 /*
   static Gender text = Gender(
       "Text",
@@ -171,7 +174,7 @@ static Gender text = Gender(
       "Text",
       MdiIcons.text,
       false,
-      DevTextResize());
+      const DevTextResize());
 }
 
 /*
